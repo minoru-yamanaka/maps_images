@@ -1,36 +1,24 @@
-import 'dart:io'; // Import necessário para usar o tipo 'File' na lógica do formulário.
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:maps_imagens/widgets/image_input.dart'; // Importa o widget customizado de input de imagem.
+import 'package:maps_imagens/widgets/image_input.dart';
 
-// Define a tela do formulário como um StatefulWidget, pois seu estado (dados do formulário) irá mudar.
 class PlaceFormScreen extends StatefulWidget {
   const PlaceFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<PlaceFormScreen> createState() => _placeFormScreenState();
+  State<PlaceFormScreen> createState() => _PlaceFormScreenState();
 }
 
-// Classe que gerencia o estado da tela do formulário.
-class _placeFormScreenState extends State<PlaceFormScreen> {
-  // Controlador para o campo de texto do título, para ler e gerenciar seu valor.
+class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
+  File? pickedImage;
 
-  // Função que será chamada quando o botão de submissão for pressionado.
-  void _submitForm() {
-    // A lógica de validação e salvamento dos dados será implementada aqui.
+  void _selectImage(File pickedImage) {
+    pickedImage = pickedImage;
   }
 
-  // --- LÓGICA DO FORMULÁRIO (ATUALMENTE COMENTADA) ---
-  // Variável para armazenar a imagem selecionada.
-  // File? _pickedImage;
-  // Variável para armazenar a posição selecionada no mapa.
-  // Latlng? _pickedPosition;
-
-  // Função para receber e armazenar a imagem vinda do widget ImageInput.
-  // void _selectImage(File pickedImage) {
-  //   setState(() {
-  //     _pickedImage = pickedImage;
+  void _submitForm() {}
   //   });
   // }
 
@@ -47,7 +35,7 @@ class _placeFormScreenState extends State<PlaceFormScreen> {
   // }
 
   // Função completa de submissão do formulário.
-  // void _submitForm() {
+
   //   if (!_isValidForm()) return; // Se o formulário não for válido, interrompe a execução.
 
   //   // Chama o provider para adicionar o novo lugar aos dados do app.
@@ -86,8 +74,8 @@ class _placeFormScreenState extends State<PlaceFormScreen> {
                           _titleController, // Associa o controlador ao campo de texto.
                       decoration: const InputDecoration(labelText: 'Titulo'),
                     ),
-                    const SizedBox(height: 20), // Um espaçamento vertical.
-                    const ImageInput(), // Widget para capturar a imagem.
+                    const SizedBox(height: 10), // Um espaçamento vertical.
+                    ImageInput(_selectImage), // Widget para capturar a imagem.
                     const SizedBox(height: 10), // Um espaçamento vertical.
                     // Aqui entraria o widget para selecionar a localização no mapa.
                     // LocationInput(this._selectPosition),
