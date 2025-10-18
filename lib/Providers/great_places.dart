@@ -1,6 +1,10 @@
 // Esta classe gerencia a lista de lugares e notifica os ouvintes (widgets) sobre mudanças.
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:maps_imagens/models/place.dart';
+// import 'package:provider/provider.dart';
 
 class GreatPlaces with ChangeNotifier {
   // Lista privada que armazena os lugares. Só pode ser modificada DENTRO desta classe.
@@ -21,5 +25,17 @@ class GreatPlaces with ChangeNotifier {
   // Método que permite buscar um lugar específico pelo seu índice (posição) na lista.
   Place itemByIndex(int index) {
     return _items[index]; // Retorna o item que está na posição `index` da lista.
+  }
+
+  void addPlace(String title, File image) {
+    final newPlace = Place(
+      id: Random().nextDouble().toString(),
+      title: title,
+      location: null,
+      image: image,
+    );
+
+    _items.add(newPlace);
+    notifyListeners();
   }
 }

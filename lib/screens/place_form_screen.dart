@@ -1,7 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:maps_imagens/providers/great_places.dart';
 import 'package:maps_imagens/widgets/image_input.dart';
+import 'package:provider/provider.dart';
 
 class PlaceFormScreen extends StatefulWidget {
   const PlaceFormScreen({Key? key}) : super(key: key);
@@ -18,36 +19,18 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
     pickedImage = pickedImage;
   }
 
-  void _submitForm() {}
-  //   });
-  // }
+  void _submitForm() {
+    if (_titleController.text.isEmpty || pickedImage == null) {
+      return;
+    }
 
-  // Função para receber e armazenar a posição vinda do widget LocationInput.
-  // void _selectPosition(Latlng position) {
-  //   setState(() {
-  //     _pickedPosition = position;
-  //   });
-  // }
+    Provider.of<GreatPlaces>(
+      context,
+      listen: false,
+    ).addPlace(_titleController.text, pickedImage!);
 
-  // Função para validar se todos os campos necessários do formulário foram preenchidos.
-  // bool _isValidForm() {
-  //   return _titleController.text.isNotEmpty && _pickedImage != null && _pickedPosition != null;
-  // }
-
-  // Função completa de submissão do formulário.
-
-  //   if (!_isValidForm()) return; // Se o formulário não for válido, interrompe a execução.
-
-  //   // Chama o provider para adicionar o novo lugar aos dados do app.
-  //   Provider.of<GreatPlaces>(context, listen: false).addPlace(
-  //     _titleController.text,
-  //     _pickedImage!,
-  //     _pickedPosition!,
-  //   );
-
-  //   // Fecha a tela do formulário e volta para a tela anterior.
-  //   Navigator.of(context).pop();
-  // }
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
