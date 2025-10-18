@@ -1,9 +1,9 @@
 // Esta classe gerencia a lista de lugares e notifica os ouvintes (widgets) sobre mudanças.
 import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 import 'package:maps_imagens/models/place.dart';
+
 // import 'package:provider/provider.dart';
 
 class GreatPlaces with ChangeNotifier {
