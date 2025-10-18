@@ -17,8 +17,8 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
   File? pickedImage;
 
-  void _selectImage(File pickedImage) {
-    pickedImage = pickedImage;
+  void _selectImage(File Image) {
+    pickedImage = Image;
   }
 
   void _submitForm() {
